@@ -1,38 +1,48 @@
-# Challenge Module 19
-## Neural Network Challenge 2: An ASU AIML Challenge by CA Frisby
+# Challenge Module 21
+## SMS Spam Detector: An ASU AIML Challenge by CA Frisby
 
 ### Overview
-Import a .csv file from an online source.  Prepare the data for
-a neural network model.  Compile and evaluate the model using a deep neural
-network.  Predict the attrition and attrition by department.  Discuss 
-further recommendations regarding attrition predictions.  
-This is strictly an academic model. 
+Import a .csv file with "spam" and "ham" classifications for SMS text messages.
+Use this already classified data to build aan SVC model to evaluate other SMS
+text.  Use a Gradio Interface application to allow user input of new SMS text
+for classification using the model. 
 
-References:  Starter code was provided by ASU AIML. 
+References:  Starter code was provided by ASU AIML. Additional references are
+cited within the code.
              
-### Part 1:  Prepare the data.
+### Part 1:  Create the SMS Classification Function
 
-The data set including multiple formats and more columns that required.  Ten
-columns were selected for input or "X". 
-The output are two separate 'y' variables, Attrition and Department.
-StandardScaler was used to scale the float point numbers in the "X" data set.  
-Onehotencoder was used for categorical X and y data. 
+The features variable is set equal to the text message column of the DataFrame.
+The target variable is set equal to the "label" column of the DataFrame.
+The data is split into training and testing sets, and the test_size is set to 33%.
+A Pipeline is built using the TfidfVectorizer and LinearSVC to transform the test 
+set and compare it to the training set.
 
-### Part 2:  Create, compile and train a neural network model.
-A deep neural network was created with two branched output layers and two
-shared layers.  
-A  model was set up with the following parameters:
-    1.  One hidden layer and one output layer wer designated for a branch to 
-        predict Department.
-    2.  One hidden layer and one output layer wer designated for a branch to 
-        predict Attrition.
-The model was compiled and fit using the binary crossentropy loss function, the
-adam optimizer, and the accuracy evaluation metric.  Execution was set to 10
-epochs. 
+The model is fitted to the transformed training data and the model is returned.
 
-### Part 3: Predict attrition and department.
-Department Predictions Accuracy: 0.95923912525177
-Attrition Predictions Accuracy: 0.8288043737411499
+The SMSSpamCollection.csv is read into a DataFrame.
+
+The DataFrame is passed to the sms_classification function and the result is set 
+equal to the "text_clf" variable.
+
+### Part 2:  Create the SMS Prediction Function
+A new variable holds the prediction of a new text.
+A conditional statement determines if the text message is "ham" or “spam”.
+The conditional returns a message if the text is “ham” or “spam”.
+
+### Part 3: Create the Gradio Interface Application
+A Gradio Interface application is created with three parameters for the 
+“function”, “outputs”, and “inputs”.
+The “outputs” parameter is a textbox that contains a label to let the user know 
+what to type in the box.
+The “inputs” parameter is a textbox that contains a label to let the user know 
+that the prediction will be displayed in the textbox.
+The Interface application can be shared with other users with a public URL.
+For this version of the code, the public URL is commented out.  This triggered
+an antivirus response.  
+
+Some SMS messages are included in comments for testing after the gradio interface.
+
 
 
 
